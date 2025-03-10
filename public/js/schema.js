@@ -8,7 +8,7 @@ let getItemJSON;
 async function fetchJSONProducten() {
     // test schema
     try {
-        let fetchJSON = await fetch("../json/schema.json");
+        let fetchJSON = await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
         if (!fetchJSON.ok) {
             throw new Error("er is een fout opgetreden" + fetchJSON.status);
         }
