@@ -113,29 +113,25 @@
 //     console.log(JSON.parse(localStorage.getItem("opslaanJSON")));
 // }
 
-
 let logo = document.getElementById("logo");
 logo.addEventListener("click", () => {
     window.location.href = "index.html";
 });
 
-// Fetch het JSON bestand dus als iemand via de admin het reset krijgt, krijgt hij dat te zien
+// fetch het json bestand dus als iemand via de admin het reset krijgt hij dat te zien
 let getItemJSON;
 async function fetchJSONProducten() {
+    // test schema
     try {
         let fetchJSON = await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
         if (!fetchJSON.ok) {
-            throw new Error("Er is een fout opgetreden" + fetchJSON.status);
+            throw new Error("er is een fout opgetreden" + fetchJSON.status);
         }
         let makeJSON = await fetchJSON.json();
+        // we hebben het gefetcht dus nu gaan we het ophalen en bewerken maar eerst gaan we deze informatie ook opslaan in localStorage
         getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
-
-        if (makeJSON && makeJSON.length > 0) {
-            getItemJSON = makeJSON;
-            localStorage.setItem("opslaanJSON", JSON.stringify(getItemJSON));
-        }
-
-        // Nu de gegevens zijn opgehaald, geef de producten weer in de admin
+        
+        // nu gaan we die card ophalen dus via de admin die gepusht wordt, wordt hier weergeven
         if (getItemJSON && getItemJSON.length > 0) {
             productenOphalen();
             winkelmandje(); 
@@ -147,7 +143,7 @@ async function fetchJSONProducten() {
     }
 }
 
-// Producten ophalen en weergeven
+// producten ophalen beneden
 async function productenOphalen() {
     const HTMLdynamish = document.getElementById("deel");
     for (let i = 0; i < getItemJSON.length; i++) {
@@ -155,30 +151,30 @@ async function productenOphalen() {
         const card = document.createElement("div");
         card.classList.add("col-md-3");
         card.innerHTML = `
-            <div class="card">
-                <div class="row g-3">
-                    <div class="col-md-12">
-                        <h3 class="text-center">${getItemJSON[i].name}</h3>
+          <div class="card">
+              <div class="row g-3">
+                  <div class="col-md-12">
+                      <h3 class="text-center">${getItemJSON[i].name}</h3>
                         <div class="col-md-12">
                            <img src="${imageURL}" alt="${getItemJSON[i].name}" class="img-fluid">
                         </div>
-                        <p class="text-center">Prijs: € ${getItemJSON[i].prijs}</p>
-                        <p class="text-center">✔️${getItemJSON[i].vink1}</p>
-                        <p class="text-center">✔️${getItemJSON[i].vink2}</p>
-                        <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-warning buttonVanWinkelmandje
-                            text-center col-md-8" data-index="${i}">
-                            In winkelmandje</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+                      <p class="text-center">Prijs: € ${getItemJSON[i].prijs}</p>
+                      <p class="text-center">✔️${getItemJSON[i].vink1}</p>
+                      <p class="text-center">✔️${getItemJSON[i].vink2}</p>
+                     <div class="d-flex justify-content-center">
+                      <button type="button" class="btn btn-warning buttonVanWinkelmandje
+                       text-center col-md-8" data-index="${i}">
+                      In winkelmandje</button></div>
+                  </div>
+              </div>
+          </div>
+      `;
         HTMLdynamish.appendChild(card);
     }
 }
 
-// Winkelmandje functie
+// winkelmandje beneden 
+// items opgehaald nu de winkelmandje
 async function winkelmandje() {
     let winkelmandjeButton = document.querySelectorAll(".buttonVanWinkelmandje");
     winkelmandjeButton.forEach(button => {
@@ -187,6 +183,7 @@ async function winkelmandje() {
             let product = getItemJSON[index];
             let winkelwagen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
             let productIndex = winkelwagen.findIndex(item => item.name == product.name);
+            console.log(productIndex);
             if (productIndex !== -1) {
                 winkelwagen[productIndex].aantal++;
             } else {
@@ -194,7 +191,7 @@ async function winkelmandje() {
                 winkelwagen.push(product);
             }
             localStorage.setItem("winkelwagen", JSON.stringify(winkelwagen));
-            alert(`${product.name} toegevoegd aan je winkelwagen`);
+            alert(`${product.name} toegevoegd aan je winkelmandje`);
         });
     });
 

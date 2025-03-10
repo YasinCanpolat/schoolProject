@@ -134,7 +134,6 @@
 //    <hr> 
 //    </div> `;
 // });
-
 let haalitemsOp = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
 
 let voegProducten = document.getElementById("voegProducten");
@@ -143,12 +142,13 @@ modalShowProducten.innerHTML = `
 <h1>voeg product gegevens toe om het gevoegd te worden</h1>
 <input id="nameProduct" class="col-12 form-control" type="text" placeholder="voeg hier de naam toe">
 <input id="urlFoto" class="col-12 form-control" type="text" placeholder="url van foto of leeg automatish afb">
-<input id="prijsProduct" class="col-12 form-control" type="text" placeholder="prijs van de product alleen in getallen geen Euro teken">
+<input id="prijsProduct" 
+class="col-12 form-control" type="text" placeholder="prijs van de product alleen in getallen geen Euro teken">
 <input id="vink1Product" class="col-12 form-control" type="text" placeholder="informatie over je product">
 <input id="vink2Product" class="col-12 form-control" type="text" placeholder="informatie over je product">
 `;
 
-console.log(haalitemsOp);
+console.log(JSON.parse(localStorage.getItem("opslaanJSON")));
 
 let buttonSaveNewProduct = document.getElementById("buttonSaveNewProduct");
 buttonSaveNewProduct.addEventListener("click", () => {
@@ -169,7 +169,7 @@ buttonSaveNewProduct.addEventListener("click", () => {
     opslaanLOCAL(pushNewProduct);
 });
 
-// Producten nu wijzigen en verwijderen
+// producten nu wijzigen verwijderen
 let producteDieAanwezigZijn = document.getElementById("producten");
 
 let rowContainer = document.createElement("div");
@@ -186,9 +186,9 @@ for (let i = 0; i < haalitemsOp.length; i++) {
                 <p>prijs: €${haalitemsOp[i].prijs}</p>
                 <p>vink1: ${haalitemsOp[i].vink1}</p>
                 <p>vink2: ${haalitemsOp[i].vink2}</p>
-                <button type="button" class="btn btn-success wijzigProducten"
-                 data-index="${i}" data-bs-target="#wijzigProduct" data-bs-toggle="modal">  Wijzig het</button>
-                <button type="button" class="btn btn-danger verwijderProducten"
+            <button type="button" class="btn btn-success wijzigProducten"
+             data-index="${i}" data-bs-target="#wijzigProduct" data-bs-toggle="modal">  Wijzig het</button>
+              <button type="button" class="btn btn-danger verwijderProducten"
                  data-index="${i}"  data-bs-toggle="modal" data-bs-target="#bevestigd">verwijder het</button>
             </div>
         </div>
@@ -199,7 +199,7 @@ for (let i = 0; i < haalitemsOp.length; i++) {
 }
 producteDieAanwezigZijn.appendChild(rowContainer);
 
-// Nu producten worden verwijderd als je daarvoor kiest
+// nu producten worden verwijderd als je daarvoor kiest
 let verwijderProducten = document.querySelectorAll(".verwijderProducten");
 verwijderProducten.forEach(button => {
     button.addEventListener("click", (event) => {
@@ -213,7 +213,7 @@ verwijderProducten.forEach(button => {
     });
 });
 
-// Nu producten wijzigen als het lukt
+// nu producten wijzigen als het lukt
 let wijzigProducten = document.querySelectorAll(".wijzigProducten");
 wijzigProducten.forEach(button => {
     button.addEventListener("click", (event) => {
@@ -222,10 +222,14 @@ wijzigProducten.forEach(button => {
         bodyModal.innerHTML = `
         <div class="">
         <h6>wat je wilt wijzigen druk er op en typ wat je wilt wijzigen en sla het op</h6>
-        <input id="naamProductWijzig" type="text" class="form-control" placeholder="naam: ${haalitemsOp[index].name}">
-        <input id="prijsProductWijzig" type="text" class="form-control" placeholder="prijs: ${haalitemsOp[index].prijs}">
-        <input id="vink1ProductWijzig" type="text" class="form-control" placeholder="vink1: ${haalitemsOp[index].vink1}">
-        <input id="vink2ProductWijzig" type="text" class="form-control" placeholder="vink2: ${haalitemsOp[index].vink2}">
+        <input id="naamProductWijzig" type="text" class="form-control" placeholder="naam:
+         ${haalitemsOp[index].name}">
+        <input id="prijsProductWijzig" type="text" class="form-control" placeholder="prijs:
+         ${haalitemsOp[index].prijs}">
+        <input id="vink1ProductWijzig" type="text" class="form-control" placeholder="vink1:
+         ${haalitemsOp[index].vink1}">
+         <input id="vink2ProductWijzig" type="text" class="form-control" placeholder="vink2:
+          ${haalitemsOp[index].vink2}">
         </div>
         `;
         let saveProductWijzig = document.getElementById("saveProductWijzig");
@@ -248,7 +252,7 @@ wijzigProducten.forEach(button => {
     });
 });
 
-// Hier wordt het opgeslagen
+// hier wordt het opgeslagen
 function opslaanLOCAL(opslaanNewProduct, index = null) {
     let producten = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
     if (index == null) {
@@ -257,14 +261,15 @@ function opslaanLOCAL(opslaanNewProduct, index = null) {
         producten[index] = opslaanNewProduct;
     }
     localStorage.setItem("opslaanJSON", JSON.stringify(producten));
-    console.log(JSON.parse(localStorage.getItem("opslaanJSON")));
-    window.location.reload();
+    console.log("Opslaan in localStorage:", JSON.parse(localStorage.getItem("opslaanJSON")));
+    
+    // Na opslaan, herlaad de pagina om de schema.js bij te werken
+    window.location.reload();  // Herlaadt de pagina, zodat schema.js de nieuwe data ophaalt
 }
 
 let winkelwagenBestellingen = document.getElementById("winkelwagenBestellingen");
 let getWinkelwagenBestellingen = JSON.parse(localStorage.getItem("winkelwagen")) || [];
 console.log(getWinkelwagenBestellingen);
-
 getWinkelwagenBestellingen.forEach(element => {
     winkelwagenBestellingen.innerHTML += `
   <div class="card col-md-4"> 
