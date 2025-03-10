@@ -13,7 +13,6 @@ async function fetchJSONProducten() {
             throw new Error("er is een fout opgetreden" + fetchJSON.status);
         }
         let makeJSON = await fetchJSON.json();
-        opslaanLOCAL(makeJSON);
         // we hebben het gefetcht dus nu gaan we het ophalen en bewerken maar eerst gaan we deze informatie ook oplsaan in localstroage
         // dus we gaan door met localstorage 1 keer opahelen is genoeg want dit gaat nooit meer gebeuren
          getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON"));
@@ -21,13 +20,16 @@ async function fetchJSONProducten() {
         //     getItemJSON = makeJSON;
         // }
         // nu gaan we die card ophalen dus  via de admin die gepusht word, word hier weergegeve
-        productenOphalen();
-        winkelmandje();
+        if (getItemJSON && getItemJSON.length > 0) {
+            productenOphalen();
+            winkelmandje(); 
+        } else {
+            console.error("Er zijn geen producten beschikbaar in localStorage.");
+        }
     } catch (error) {
         console.error(error.message);
     }
 }
-fetchJSONProducten();
 // producten ophalen beneden
 async function productenOphalen() {
     const HTMLdynamish = document.getElementById("deel");
@@ -105,6 +107,7 @@ async function winkelmandje() {
         }
     });
 }
+fetchJSONProducten();
 function opslaanLOCAL(opslaan) {
     localStorage.setItem("opslaanJSON", JSON.stringify(opslaan));
     console.log(JSON.parse(localStorage.getItem("opslaanJSON")));
