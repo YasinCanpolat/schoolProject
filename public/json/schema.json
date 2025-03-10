@@ -1,0 +1,37 @@
+[
+    {
+        "name": "schemavan3Maanden",
+        "prijs": "10",
+        "vink1": "trainingschema van 3 maanden",
+        "vink2": "voeding schema van 3 maanden",
+        "aantal": 0
+    },
+    {
+        "name": "schemavan6Maanden",
+        "prijs": "20",
+        "vink1": "trainingschema van 6 maanden",
+        "vink2": "voeding schema van 6 maanden",
+        "aantal": 0
+    },
+    {
+        "name": "schemavan9Maanden",
+        "prijs": "30",
+        "vink1": "trainingschema van 9 maanden",
+        "vink2": "voeding schema van 9 maanden",
+        "aantal": 0
+    },
+    {
+        "name": "schemavan12Maanden",
+        "prijs": "60",
+        "vink1": "trainingschema van 12 maanden",
+        "vink2": "voeding schema van 12 maanden",
+        "aantal": 0
+    },
+    {
+        "name": "schemavan15Maanden",
+        "prijs": "80",
+        "vink1": "trainingschema van 15 maanden",
+        "vink2": "voeding schema van 15 maanden",
+        "aantal": 0
+    }
+]

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+        <div class="container-fluid">
+            <a id="logo" href="#" class="navbar-brand"><img src="../imagess/hero-img.png" class="rounded-circle"
+                    style="width: 50px;" alt=""></a>
+            <i class="fas fa-shopping-cart navbar-brand" id="winkelwagenKnop" style="cursor: pointer;"></i>
+
+            <button class="navbar-toggler btn btn-outline-info" id="winkelwagenCheck" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link me-5" href="schema.html" id="producten">Producten</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link me-5" href="schema.html" id="schema">Schema</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle me-5" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Fitness Tools
+                        </a>
+                        <ul class="dropdown-menu me-5">
+                            <li><a class="dropdown-item" href="KCAL.html" id="bmiBerekenen">BMI berekenen</a></li>
+                            <li>
+                                <hr>
+                            </li>
+                            <li><a class="dropdown-item" href="RM.html" id="rmBerekenen">1RM berekenen</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link me-5" href="index.html" id="overOns">Over Ons</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sectionHero">
+        <div class="d-flex justify-content-center align-items-center heroPNG" style="position: relative; width: 100%;">
+            <img src="../imagess/gym.png" class="heroPNG position-absolute" alt=""
+                style="height: 100%; object-fit: cover; width: 100%; object-position: center; z-index: 0;">
+            <div class="d-flex justify-content-center align-items-center" style="position: relative;">
+            </div>
+
+            <div class="d-none d-md-block zoekbalk" style="z-index: 1;">
+                <div class="d-flex align-items-center">
+                    <input id="inputValueVanZoekbalk" class="me-2 form-control col-md-5" type="search"
+                        placeholder="Search" aria-label="Search">
+                    <button id="ButtonZoekbalk" class="btn btn-danger col-md-7" type="submit">Zoek</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container-fluid sectionHero">
+            <div class="row">
+
+                <div class="row d-flex justify-content-evenly align-items-center mt-5">
+                    <p class="text-white text-center" style="font-size: x-large;">Klik wat je doelen zijn</p>
+                    <div class="col-md-2 col-4">
+                        <div class="card fotoKeuzes1rmKcal" style="border-radius: 10%;">
+                            <img id="kcalApp" class="cursor" src="../imagess/kcalCalculation.png" alt=""
+                                style="height: 30vh; object-fit: cover; width: 100%; border-radius: 10%;">
+                        </div>
+                    </div>
+                    <!-- kcal berekenen -->
+
+
+                    <div class="col-md-2 col-4  fotoKeuzes1rmKcal">
+                        <div class="card" style="border-radius: 10%;">
+                            <img id="RMBerekenen" class="cursor" src="../imagess/1rm.png" alt=""
+                                style="height: 30vh; object-fit: cover; border-radius: 10%;">
+                        </div>
+                    </div>
+                    <!-- 1rm berekenen -->
+                    <div class="col-md-2 col-4  fotoKeuzes1rmKcal">
+                        <div class="card" style="border-radius: 10%;">
+                            <img id="SchemaApp" class="cursor" src="../imagess/schema.png" alt=""
+                                style="height: 30vh; object-fit: cover; border-radius: 10%;">
+                        </div>
+                    </div>
+                    <!-- schema app -->
+
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container-fluid">
+            <h1 class="text-center">Over ons</h1>
+            <h5>Wij zijn een webshop die niet alleen hoogwaardige gymschema’s en fitnessproducten aanbiedt, maar je ook
+                gratis helpt met tools zoals een BMI- en 1RM-calculator en nog veel meers. Onze producten en schema’s
+                zijn ontworpen om jou te ondersteunen bij het behalen van je ultieme prestaties!</h5>
+        </div>
+
+
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <div class="d-flex row">
+                    <div class="col-md-4" style="font-style: italic; font-size: x-large; font-weight: bolder;">
+                        <p class="text-center"> <i class="fas fa-check"></i> Schema voor jou speciaal</p>
+                    </div>
+                    <div class="col-md-4" style="font-style: italic; font-size: x-large; font-weight: bolder;">
+                        <p class=" text-center"> <i class="fas fa-check"></i> fitness producten die jou helpen met het
+                            opbouwen
+                            van spiermassa</p>
+                    </div>
+                    <div class="col-md-4" style="font-style: italic; font-size: x-large; font-weight: bolder;">
+                        <p class=" text-center"><i class="fas fa-check"></i>BMI/RM berekenen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-dark text-white p-5">
+            <div class=" d-flex justify-content-between">
+
+                <div class="d-flex flex-column justify-content-center align-items-center">
+
+                    <div class="fs-3">Over Ons</div>
+
+
+                </div>
+
+
+                <div class="w-75">
+                    <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
+                        <li class="nav-item col-md-6 d-flex justify-content-center" role="presentation">
+                            <button class="nav-link w-100" id="home-tab" data-bs-toggle="tab"
+                                data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                                aria-selected="true">Over Ons</button>
+                        </li>
+                        <li class="nav-item col-md-6 d-flex justify-content-center" role="presentation">
+                            <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab"
+                                data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                aria-controls="profile-tab-pane" aria-selected="false">Contact</button>
+                        </li>
+                    </ul>
+
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane text-white" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                            tabindex="0">
+                            <p>Wij zijn een webshop die niet alleen hoogwaardige <span
+                                    style="font-size: 16px; font-weight: 800; color: rgb(21, 166, 36);">gymschema’s en
+                                    fitnessproducten</span> aanbiedt, maar je ook <span
+                                    style="font-size: 16px; font-weight: 800; color: rgb(21, 166, 36);">gratis helpt
+                                    met</span> tools zoals een<span style="color: chartreuse;"> BMI- en 1RM-calculator
+                                    en nog veel meers</span>. Onze producten en schema’s zijn ontworpen om jou te
+                                ondersteunen bij het behalen van je ultieme prestaties!</p>
+                        </div>
+                        <div class="tab-pane text-white" id="profile-tab-pane" role="tabpanel"
+                            aria-labelledby="profile-tab" tabindex="0">
+                            <a href="mailto:ycanpolat0606@hotmail.com">stuur ons een mail</a>
+                            <p>adres: Prinsengracht 10GH 1065GH</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/script.js"></script>
+</body>
+
+</html>

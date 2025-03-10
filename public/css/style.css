@@ -1,0 +1,25 @@
+.heroPNG {
+    height: 70vh;
+}
+
+@media (max-width: 500px) {
+    .heroPNG {
+        height: 50vh;
+    }
+}
+
+.cursor{
+    cursor: pointer;
+}
+ .sectionHero{
+    height: 50vh;
+    background-image: url("../imagess/al2.jpeg");
+}
+.fotoKeuzes1rmKcal{
+    transition: transform 0.3s ease;
+}
+.fotoKeuzes1rmKcal:hover{
+    opacity: 1;
+    transform: scale(1.5);
+    z-index: 1;
+}

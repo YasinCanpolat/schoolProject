@@ -1,0 +1,7 @@
+.CardUitslageVerborgen{
+    display: none;
+}
+
+.visibleVanUitslag{
+    display: block;
+}
