@@ -15,7 +15,14 @@ async function fetchJSONProducten() {
         let makeJSON = await fetchJSON.json();
         // we hebben het gefetcht dus nu gaan we het ophalen en bewerken maar eerst gaan we deze informatie ook oplsaan in localstroage
         // dus we gaan door met localstorage 1 keer opahelen is genoeg want dit gaat nooit meer gebeuren
-         getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
+       if(makeJSON.length == 0){
+        document.addEventListener(`DOMContentLoaded`, () => {
+            getItemJSON = makeJSON;
+            localStorage.setItem("opslaanJSON", JSON.stringify(getItemJSON));
+        });
+       } else {
+        getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
+       }
         // if(makeJSON){
         //     getItemJSON = makeJSON;
         // }
