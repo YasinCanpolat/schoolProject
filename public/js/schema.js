@@ -5,38 +5,70 @@ logo.addEventListener("click", () => {
 
 // fetch het json bestand dus als iemand via de admiun het reset krijg hij dat te zien
 let getItemJSON;
+// async function fetchJSONProducten() {
+//     // test schema
+//     try {
+//         let fetchJSON = await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
+//         if (!fetchJSON.ok) {
+//             throw new Error("er is een fout opgetreden" + fetchJSON.status);
+//         }
+//         let makeJSON = await fetchJSON.json();
+//         // we hebben het gefetcht dus nu gaan we het ophalen en bewerken maar eerst gaan we deze informatie ook oplsaan in localstroage
+//         // dus we gaan door met localstorage 1 keer opahelen is genoeg want dit gaat nooit meer gebeuren
+//        if(makeJSON.length == 0){
+//         document.addEventListener(`DOMContentLoaded`, () => {
+//             getItemJSON = makeJSON;
+//             localStorage.setItem("opslaanJSON", JSON.stringify(getItemJSON));
+//         });
+//        } else {
+//         getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
+//        }
+//         // if(makeJSON){
+//         //     getItemJSON = makeJSON;
+//         // }
+//         // nu gaan we die card ophalen dus  via de admin die gepusht word, word hier weergegeve
+//         if (getItemJSON && getItemJSON.length > 0) {
+//             alert("het is leeg");
+//         } else {
+//             console.error("Er zijn geen producten beschikbaar in localStorage.");
+//         }
+//     } catch (error) {
+//         console.error(error.message);
+//     }
+// }
+// producten ophalen beneden
+
 async function fetchJSONProducten() {
-    // test schema
     try {
-        let fetchJSON = await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
-        if (!fetchJSON.ok) {
-            throw new Error("er is een fout opgetreden" + fetchJSON.status);
+        // Controleer of de producten al in localStorage staan
+        let storedProducts = JSON.parse(localStorage.getItem("opslaanJSON"));
+        
+        // Als er geen producten in localStorage staan, haal dan de producten van de server op
+        if (!storedProducts || storedProducts.length === 0) {
+            let fetchJSON = await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
+            
+            if (!fetchJSON.ok) {
+                throw new Error("Er is een fout opgetreden: " + fetchJSON.status);
+            }
+            
+            let jsonGemaaktJSON = await fetchJSON.json();
+            
+            // Als we de producten hebben opgehaald, sla ze dan op in localStorage
+            if (jsonGemaaktJSON.length > 0) {
+                localStorage.setItem("opslaanJSON", JSON.stringify(jsonGemaaktJSON));
+                storedProducts = jsonGemaaktJSON;
+            } else {
+                alert("Er zijn geen producten beschikbaar in het JSON-bestand.");
+            }
         }
-        let makeJSON = await fetchJSON.json();
-        // we hebben het gefetcht dus nu gaan we het ophalen en bewerken maar eerst gaan we deze informatie ook oplsaan in localstroage
-        // dus we gaan door met localstorage 1 keer opahelen is genoeg want dit gaat nooit meer gebeuren
-       if(makeJSON.length == 0){
-        document.addEventListener(`DOMContentLoaded`, () => {
-            getItemJSON = makeJSON;
-            localStorage.setItem("opslaanJSON", JSON.stringify(getItemJSON));
-        });
-       } else {
-        getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
-       }
-        // if(makeJSON){
-        //     getItemJSON = makeJSON;
-        // }
-        // nu gaan we die card ophalen dus  via de admin die gepusht word, word hier weergegeve
-        if (getItemJSON && getItemJSON.length > 0) {
-            alert("het is leeg");
-        } else {
-            console.error("Er zijn geen producten beschikbaar in localStorage.");
-        }
+
+        // Nu kun je de producten gebruiken (of uit localStorage of van de server)
+        getItemJSON = storedProducts;
     } catch (error) {
-        console.error(error.message);
+        console.error("Fout bij het ophalen van producten:", error);
     }
 }
-// producten ophalen beneden
+
 async function productenOphalen() {
     const HTMLdynamish = document.getElementById("deel");
         for (let i = 0; i < getItemJSON.length; i++) {
