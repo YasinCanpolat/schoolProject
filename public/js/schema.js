@@ -6,32 +6,31 @@ logo.addEventListener("click", () => {
 // fetch het json bestand dus als iemand via de admiun het reset krijg hij dat te zien
 let getItemJSON;
 async function fetchJSONProducten() {
-   // net als admin verander gewoon de localstorage
-try {
-    getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON"));
-    let fetchJSON = await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
-    let makeJSON = await fetchJSON.json();
-    if(getItemJSON == null){
-     getItemJSON = makeJSON;
-     localStorage.setItem("opslaanJSON", JSON.stringify(getItemJSON));
-    } else {
-     alert("2 de keer");
-     alert(getItemJSON);
+    // net als admin verander gewoon de localstorage
+    try {
+        getItemJSON = JSON.parse(localStorage.getItem("opslaanJSON"));
+        let fetchJSON = await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
+        let makeJSON = await fetchJSON.json();
+        if (getItemJSON == null) {
+            getItemJSON = makeJSON;
+            localStorage.setItem("opslaanJSON", JSON.stringify(getItemJSON));
+        } else {
+            console.log(getItemJSON);
+        }
+    } catch (error) {
+        console.log(error.message);
     }
-} catch (error) {
-    console.log(error.message);
-}
 }
 // producten ophalen beneden
 
 
 async function productenOphalen() {
     const HTMLdynamish = document.getElementById("deel");
-        for (let i = 0; i < getItemJSON.length; i++) {
-            let imageURL = getItemJSON[i].url || "../imagess/schema.png";
-            const card = document.createElement("div");
-            card.classList.add("col-md-3");
-            card.innerHTML = `
+    for (let i = 0; i < getItemJSON.length; i++) {
+        let imageURL = getItemJSON[i].url || "../imagess/schema.png";
+        const card = document.createElement("div");
+        card.classList.add("col-md-3");
+        card.innerHTML = `
           <div class="card">
               <div class="row g-3">
                   <div class="col-md-12">
@@ -50,8 +49,8 @@ async function productenOphalen() {
               </div>
           </div>
       `;
-            HTMLdynamish.appendChild(card);
-        }
+        HTMLdynamish.appendChild(card);
+    }
 }
 //? winkelmandje benden 
 // items opgehaald nu de winkelmandje
@@ -101,10 +100,10 @@ async function winkelmandje() {
         }
     });
 }
-window.addEventListener('DOMContentLoaded', async function() {
-   await fetchJSONProducten();
-   await productenOphalen();
-   await winkelmandje();
+window.addEventListener('DOMContentLoaded', async function () {
+    await fetchJSONProducten();
+    await productenOphalen();
+    await winkelmandje();
 });
 function opslaanLOCAL(opslaan) {
     localStorage.setItem("opslaanJSON", JSON.stringify(opslaan));
