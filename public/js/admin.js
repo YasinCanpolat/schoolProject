@@ -1,5 +1,7 @@
 let haalitemsOp = JSON.parse(localStorage.getItem("opslaanJSON")) || [];
-
+let buttonHomeSchema = document.getElementById("buttonHomeSchema").addEventListener("click", () => {
+window.location.href = "schema.html";
+});
 let voegProducten = document.getElementById("voegProducten");
 let modalShowProducten = document.querySelector(".modal-body");
 modalShowProducten.innerHTML = `
@@ -31,9 +33,8 @@ buttonSaveNewProduct.addEventListener("click", () => {
     opslaanLOCAL(pushNewProduct);
 });
 // producten nu wijzigen verwijderen
-let producteDieAanwezigZijn = document.getElementById("producten");
-
-
+function aanwezigProduct(){
+    let producteDieAanwezigZijn = document.getElementById("producten");
 let rowContainer = document.createElement("div");
 rowContainer.classList.add("row");
 
@@ -60,6 +61,8 @@ for (let i = 0; i < haalitemsOp.length; i++) {
     rowContainer.appendChild(card);
 }
 producteDieAanwezigZijn.appendChild(rowContainer);
+}
+aanwezigProduct();
 // nu producten wordne verwijderd als je daarvoor kiest
 let verwijderProducten = document.querySelectorAll(".verwijderProducten");
 verwijderProducten.forEach(button => {
@@ -133,4 +136,14 @@ getWinkelwagenBestellingen.forEach(element => {
    <p>aantal:${element.aantal}</p>
    <hr> 
    </div> `;
+});
+let reset = document.getElementById("reset");
+reset.addEventListener("click", async() => {
+let fetchJSON =  await fetch("https://school-project-git-main-yasins-projects-b82e3aad.vercel.app/json/schema.json");
+let jsonGemaaktJSON = await fetchJSON.json();
+localStorage.setItem("opslaanJSON", JSON.stringify(jsonGemaaktJSON));
+haalitemsOp = jsonGemaaktJSON;
+aanwezigProduct();
+alert("het is geresett");
+window.location.reload();
 });
