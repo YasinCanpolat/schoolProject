@@ -28,8 +28,7 @@ async function fetchJSONProducten() {
         // }
         // nu gaan we die card ophalen dus  via de admin die gepusht word, word hier weergegeve
         if (getItemJSON && getItemJSON.length > 0) {
-            productenOphalen();
-            winkelmandje(); 
+            alert("het is leeg");
         } else {
             console.error("Er zijn geen producten beschikbaar in localStorage.");
         }
@@ -114,7 +113,11 @@ async function winkelmandje() {
         }
     });
 }
-fetchJSONProducten();
+window.addEventListener('DOMContentLoaded', async function() {
+   await fetchJSONProducten();
+   await productenOphalen();
+   await winkelmandje();
+});
 function opslaanLOCAL(opslaan) {
     localStorage.setItem("opslaanJSON", JSON.stringify(opslaan));
     console.log(JSON.parse(localStorage.getItem("opslaanJSON")));
